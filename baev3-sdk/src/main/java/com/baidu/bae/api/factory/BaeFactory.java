@@ -3,7 +3,7 @@ package com.baidu.bae.api.factory;
 import com.baidu.bae.api.exception.BaeException;
 import com.baidu.bae.api.image.BaeImageService;
 import com.baidu.bae.api.image.internal.BaeImageServiceImpl;
-import com.baidu.bae.api.image.local.BaeImageServiceLocalImpl;
+import com.baidu.bae.api.log.schema.BaeLog;
 import com.baidu.bae.api.memcache.BaeCache;
 import com.baidu.bae.api.memcache.BaeMemcachedClient;
 import com.baidu.bae.api.memcache.local.BaeMemcachedClientLocalImpl;
@@ -24,11 +24,7 @@ public class BaeFactory {
 	 * @throws BaeException
 	 */
 	public static BaeImageService getBaeImageService(String ak,String sk,String host) throws BaeException {
-		if (System.getProperty("baejavasdk.local") != null && System.getProperty("baejavasdk.local").equals("true") ) {
-			return new BaeImageServiceLocalImpl(ak,sk,host);
-		} else {
-			return new BaeImageServiceImpl(ak,sk,host);
-		}
+		return new BaeImageServiceImpl(ak,sk,host);
 	}
 	
 	public static BaeCache getBaeCache(String cacheId, String memcacheAddr, String user, String password) throws BaeException {		
@@ -39,5 +35,9 @@ public class BaeFactory {
 		}
 		
 		
+	}
+	
+	public static BaeLog getBaeLog() { 
+		return new BaeLog();
 	}
 }
