@@ -24,7 +24,11 @@ import com.baidu.bae.api.log.schema.UserLogEntry;
 import com.baidu.bae.api.log.schema.logchain;
 
 public class LogClient {
-	public LogClient(SecretEntry secret){
+	public LogClient(SecretEntry secret, int bufcount){
+		if (bufcount == 0) {
+			this._bufcount = DEFAULT_FLUSH_COUNT;
+		}
+		
 		_secret = secret;
 		_logs = new ArrayList<BaeLogEntry>();
 		get_env();
@@ -103,7 +107,7 @@ public class LogClient {
 		long now = System.currentTimeMillis();
 		
 		if (now - _last_flush_time >= DEFAULT_FLUSH_INTERVAL 
-				|| _logs.size() >= DEFAULT_FLUSH_COUNT) {
+				|| _logs.size() >= this._bufcount) {
 			return true;
 		}
 		return false;
@@ -151,6 +155,7 @@ public class LogClient {
 	private String _appid = null, _host = null;
 	private int _port;
 	private long _last_flush_time;
+	private int  _bufcount;
 
 	private final static int DEFAULT_PORT = 7000;
 	private final static int DEFAULT_FLUSH_INTERVAL = 3000; //3s

@@ -37,7 +37,7 @@ public class BaeLogAppender extends AppenderSkeleton{
 				LogLog.warn("AK or SK not set to appender");
 				return;
 			}
-			_client = new LogClient(_secret);
+			_client = new LogClient(_secret, _bufcount);
 		}
 		BaeLogLevel level = _getLogLevel(event.getLevel());
 		String      tag   = event.getLoggerName();
@@ -87,6 +87,11 @@ public class BaeLogAppender extends AppenderSkeleton{
 		_secret.setPasswdIsSet(true);
 	}
 	
-	private SecretEntry _secret;	;
+	public void setBufcount(int bufcount) {
+		this._bufcount = bufcount;
+	}
+	
+	private SecretEntry _secret;	
+	private int         _bufcount = 0;
 	private LogClient _client = null;
 }
