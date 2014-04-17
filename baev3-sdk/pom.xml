@@ -4,7 +4,7 @@
 
   <groupId>com.baidu.bae</groupId>
   <artifactId>baev3-sdk</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <packaging>jar</packaging>
 
   <name>baev3-sdk</name>
@@ -15,7 +15,7 @@
   </properties>
 
   <dependencies>
-   <dependency>
+  	<dependency>
         <groupId>log4j</groupId>
         <artifactId>log4j</artifactId>
         <version>1.2.17</version>
@@ -24,16 +24,6 @@
         <groupId>org.apache.thrift</groupId>
         <artifactId>libthrift</artifactId>
         <version>0.9.1</version>
-    </dependency>
-        <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>1.7.5</version>
-    </dependency>
-    <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-simple</artifactId>
-        <version>1.7.5</version>
     </dependency>
   	<dependency>
 		<groupId>net.sf.json-lib</groupId>
